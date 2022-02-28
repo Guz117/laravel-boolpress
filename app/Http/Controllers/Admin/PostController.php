@@ -15,7 +15,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::paginate(20);
+        $posts = Post::orderBy('updated_at', 'desc')->paginate(20);
         return view('admin.posts.index', compact('posts'));
     }
 
@@ -74,9 +74,9 @@ class PostController extends Controller
     public function show(Post $post)
     {
         $data = [
-            'comic' => $post,
+            'post' => $post,
         ];
-        return view('admin.comics.show', $data);
+        return view('admin.posts.show', $data);
     }
 
     /**
@@ -107,7 +107,7 @@ class PostController extends Controller
             dd('errore');
         }
 
-        return redirect()->route('admin.post.show', ['post' => $post]);
+        return redirect()->route('admin.posts.show', ['post' => $post]);
     }
 
     /**
