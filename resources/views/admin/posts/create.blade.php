@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row">
             <div class="col">
-                <form action="{{ route('admin.posts.store') }}" method="POST">
+                <form action="{{ route('admin.posts.store') }}" method="post">
                     @csrf
                     @method('POST')
 
@@ -30,6 +30,8 @@
                     </div>
 
                     <input class="btn btn-primary" type="submit" value="Salva">
+
+                    <a class="btn btn-primary" href="{{ url()->previous() }}">Back</a>
                 </form>
             </div>
         </div>

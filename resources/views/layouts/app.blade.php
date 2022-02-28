@@ -56,7 +56,7 @@
                             </li>
                             <li>
                                 <div aria-labelledby="navbarDropdown">
-                                    <a href="{{ route('logout') }}"
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
@@ -66,10 +66,11 @@
                                         @csrf
                                     </form>
                                 </div>
-                            </li>
+                            </li>    
                             <li class="nav-item">
                                 <a class="nav-link active" aria-current="page" href="{{ route('admin.posts.index') }}">Home</a>
                             </li>
+                            
                         @endguest
                     </ul>
                 </div>
