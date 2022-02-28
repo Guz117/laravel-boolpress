@@ -67,6 +67,9 @@
                                     </form>
                                 </div>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="{{ route('admin.posts.index') }}">Home</a>
+                            </li>
                         @endguest
                     </ul>
                 </div>
