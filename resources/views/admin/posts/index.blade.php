@@ -39,10 +39,10 @@
                             <td>{{ $post->title }}</td>
                             <td>{{ $post->content }}</td>
                             <td>{{ $post->slug }}</td>
-                            <td><a class="btn btn-primary" href="{{ route('admin.posts.show', $post) }}">View</a></td>
-                            <td><a class="btn btn-primary" href="{{ route('admin.posts.edit', $post) }}">Edit</a></td>
+                            <td><a class="btn btn-primary" href="{{ route('admin.posts.show', $post->slug) }}">View</a></td>
+                            <td><a class="btn btn-primary" href="{{ route('admin.posts.edit', $post->slug) }}">Edit</a></td>
                             <td>
-                                <form action="{{ route('admin.posts.destroy', $post->id) }}" method="post">
+                                <form action="{{ route('admin.posts.destroy', $post->slug) }}" method="post">
                                     @csrf
                                     @method('DELETE')
                                     <input class="btn btn-danger" type="submit" value="Delete">

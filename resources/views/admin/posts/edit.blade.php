@@ -5,7 +5,7 @@
 <div class="container">
         <div class="row">
             <div class="col">
-                <form action="{{ route('admin.posts.update', $post->id) }}" method="post">
+                <form action="{{ route('admin.posts.update', $post->slug) }}" method="post">
                     @csrf
                     @method('PATCH')
                     <div class="mb-3">
