@@ -40,7 +40,11 @@
                             <td>{{ $post->content }}</td>
                             <td>{{ $post->slug }}</td>
                             <td><a class="btn btn-primary" href="{{ route('admin.posts.show', $post->slug) }}">View</a></td>
-                            <td><a class="btn btn-primary" href="{{ route('admin.posts.edit', $post->slug) }}">Edit</a></td>
+                            
+                             @if (Auth::user()->id === $post->user_id)
+                                <td><a class="btn btn-primary" href="{{ route('admin.posts.edit', $post->slug) }}">Edit</a></td>
+                             @endif
+                             
                             <td>
                                 <form action="{{ route('admin.posts.destroy', $post->slug) }}" method="post">
                                     @csrf

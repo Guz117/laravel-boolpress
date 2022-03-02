@@ -43,6 +43,12 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('admin.posts.indexUser') }}">
+                                        <i class="bi bi-files"></i>
+                                        My Posts
+                                    </a>
+                                </li>
+                                <li class="nav-item">
                                     <a class="nav-link" href="#">
                                         <i class="bi bi-folder"></i>
                                         Categories

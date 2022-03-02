@@ -10,7 +10,7 @@
                     @method('PATCH')
                     <div class="mb-3">
                         <label for="title" class="form-label">Title</label>
-                        <input type="text" class="form-control" id="title" name="title" value="{{ $post->title }}">
+                        <input type="text" class="form-control" id="title" name="title" value="{{ old('title', $post->title) }}">
                         @error('title')
                             <div class="alert alert-danger">
                                 {{ $message }}
