@@ -107,7 +107,12 @@ class PostController extends Controller
     public function edit(Post $post)
     {
 
-        return view('admin.posts.edit', ['post' => $post]);
+        if (Auth::user()->id != $post->user_id) {
+            abort('403');
+        }
+        $categories = Category::all();
+
+        return view('admin.posts.edit', ['post' => $post, 'categories' => $categories]);
     }
 
     /**
@@ -119,19 +124,34 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        $validateData = $request->validate([
-            'title' => 'required|max:255',
-            'content' => 'required',
-        ]);
-
         $data = $request->all();
-        $update = $post->update($data);
-
-        if (!$update) {
-            dd('errore');
+        if (Auth::user()->id != $post->user_id) {
+            abort('403');
         }
 
-        return redirect()->route('admin.posts.show', ['post' => $post]);
+
+        $postValidate = $request->validate(
+            [
+                'title' => 'required|max:240',
+                'content' => 'required',
+                'category_id' => 'exists:App\Model\Category,id'
+            ]
+        );
+
+        if ($data['title'] != $post->title) {
+            $post->title = $data['title'];
+            $post->slug = $post->createSlug($data['title']);
+        }
+        if ($data['content'] != $post->content) {
+            $post->content = $data['content'];
+        }
+        if ($data['category_id'] != $post->category_id) {
+            $post->category_id = $data['category_id'];
+        }
+
+        $post->update();
+
+        return redirect()->route('admin.posts.show', $post);
     }
 
     /**

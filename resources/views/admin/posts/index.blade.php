@@ -27,7 +27,9 @@
                         <tr class="table-danger">
                             <th>Title</th>
                             <th>Content</th>
-                            <th>Slug</th>
+                            <th>Category</th>
+                            <th>Created At</th>
+                            <th>Updated At</th>
                             <th>View</th>
                             <th>Edit</th>
                             <th>Delete</th>
@@ -38,13 +40,15 @@
                         <tr>
                             <td>{{ $post->title }}</td>
                             <td>{{ $post->content }}</td>
-                            <td>{{ $post->slug }}</td>
+                            <td>{{ $post->category_id }}</td>
+                            <td>{{ $post->created_at }}</td>
+                            <td>{{ $post->updated_at }}</td>
                             <td><a class="btn btn-primary" href="{{ route('admin.posts.show', $post->slug) }}">View</a></td>
                             
                              @if (Auth::user()->id === $post->user_id)
                                 <td><a class="btn btn-primary" href="{{ route('admin.posts.edit', $post->slug) }}">Edit</a></td>
                              @endif
-                             
+
                             <td>
                                 <form action="{{ route('admin.posts.destroy', $post->slug) }}" method="post">
                                     @csrf

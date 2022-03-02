@@ -11,6 +11,7 @@ class Post extends Model
         'content',
         'slug',
         'user_id',
+        'category_id',
         'created_at',
         'updated_at',
     ];
@@ -18,6 +19,16 @@ class Post extends Model
     public function user()
     {
         return $this->belongsTo('App\User');
+    }
+
+    /**
+     * Relationship with category 
+     *
+     * @return void
+     */
+    public function category()
+    {
+        return $this->belongsTo('App\Model\Category');
     }
 
     /**
