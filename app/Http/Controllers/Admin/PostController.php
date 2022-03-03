@@ -55,33 +55,24 @@ class PostController extends Controller
     public function store(Request $request)
     {
 
-        $validateData = $request->validate([
-            'title' => 'required|max:255',
-            'content' => 'required',
-        ]);
-
         $data = $request->all();
-
         $data['user_id'] = Auth::user()->id;
 
-        $slug = Str::slug($data['title'], '-');
-        $postPresente = Post::where('slug', $slug)->first();
+        $postValidate = $request->validate(
+            [
+                'title' => 'required|max:240',
+                'content' => 'required',
+                'category_id' => 'exists:App\Model\Category,id'
+            ]
+        );
 
 
-        $counter = 0;
-        while ($postPresente) {
-            $slug = $slug . '-' . $counter;
-            $postPresente = Post::where('slug', $slug)->first();
-            $counter++;
-        }
+        $post = new Post();
+        $post->fill($data);
+        $post->slug = $post->createSlug($data['title']);
+        $post->save();
 
-        $newPost = new Post();
-
-        $newPost->fill($data);
-        $newPost->slug = $slug;
-        $newPost->save();
-
-        return redirect()->route('admin.posts.show', $newPost->slug);
+        return redirect()->route('admin.posts.show', $post->slug);
     }
 
     /**
