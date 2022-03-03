@@ -22,9 +22,9 @@
         </div>
         <div class="row">
             <div class="col">
-                 <table class="table table-warning">
+                 <table class="table table-striped">
                     <thead>
-                        <tr class="table-danger">
+                        <tr>
                             <th>Title</th>
                             <th>Content</th>
                             <th>Category</th>
@@ -50,11 +50,13 @@
                              @endif
 
                             <td>
-                                <form action="{{ route('admin.posts.destroy', $post->slug) }}" method="post">
-                                    @csrf
-                                    @method('DELETE')
-                                    <input class="btn btn-danger" type="submit" value="Delete">
-                                </form> 
+                                @if (Auth::user()->id === $post->user_id)
+                                    <form action="{{ route('admin.posts.destroy', $post->slug) }}" method="post">
+                                        @csrf
+                                        @method('DELETE')
+                                        <input class="btn btn-danger" type="submit" value="Delete">
+                                    </form> 
+                                @endif
                             </td>
                             
                         </tr>
