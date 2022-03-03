@@ -17,7 +17,7 @@
             </div>
         </div>
         <div class="row">
-            <table class="table table-striped">
+            <table class="table table-dark">
                 <thead>
                     <tr>
                         <th scope="col">Id</th>
