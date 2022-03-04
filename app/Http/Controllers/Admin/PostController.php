@@ -109,8 +109,8 @@ class PostController extends Controller
             abort('403');
         }
         $categories = Category::all();
-
-        return view('admin.posts.edit', ['post' => $post, 'categories' => $categories]);
+        $tags = Tag::all();
+        return view('admin.posts.edit', ['post' => $post, 'categories' => $categories, 'tags' => $tags]);
     }
 
     /**

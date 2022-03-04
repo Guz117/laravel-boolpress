@@ -28,6 +28,7 @@
                             <th>Title</th>
                             <th>Content</th>
                             <th>Category</th>
+                            <th>Tags</th>
                             <th>Created At</th>
                             <th>Updated At</th>
                             <th>View</th>
@@ -41,6 +42,11 @@
                             <td>{{ $post->title }}</td>
                             <td>{{ $post->content }}</td>
                             <td>{{ $post->category_id }}</td>
+                            <td>
+                                @foreach ($post->tags()->get() as $tag)
+                                    {{ $tag->name }}
+                                @endforeach
+                            </td>
                             <td>{{ $post->created_at }}</td>
                             <td>{{ $post->updated_at }}</td>
                             <td><a class="btn btn-primary" href="{{ route('admin.posts.show', $post->slug) }}">View</a></td>
