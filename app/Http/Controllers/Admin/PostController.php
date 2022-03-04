@@ -167,10 +167,9 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        if (Auth::user()->id != $post->user_id) {
-            abort('403');
-        }
 
+
+        $post->tags()->detach();
         $post->delete();
 
         return redirect()
