@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Model\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Model\Tag;
 
 class PostController extends Controller
 {
@@ -43,7 +44,8 @@ class PostController extends Controller
     public function create()
     {
         $categories = Category::all();
-        return view('admin.posts.create', ['categories' => $categories]);
+        $tags = Tag::all();
+        return view('admin.posts.create', ['categories' => $categories, 'tags' => $tags]);
     }
 
     /**
@@ -62,7 +64,8 @@ class PostController extends Controller
             [
                 'title' => 'required|max:240',
                 'content' => 'required',
-                'category_id' => 'exists:App\Model\Category,id'
+                'category_id' => 'exists:App\Model\Category,id',
+                'tags.*' => 'nullable|exists:App\Model\Tag,id'
             ]
         );
 
@@ -71,6 +74,10 @@ class PostController extends Controller
         $post->fill($data);
         $post->slug = $post->createSlug($data['title']);
         $post->save();
+
+        if (!empty($data['tags'])) {
+            $post->tags()->attach($data['tags']);
+        }
 
         return redirect()->route('admin.posts.show', $post->slug);
     }
@@ -125,7 +132,8 @@ class PostController extends Controller
             [
                 'title' => 'required|max:240',
                 'content' => 'required',
-                'category_id' => 'exists:App\Model\Category,id'
+                'category_id' => 'exists:App\Model\Category,id',
+                'tags.*' => 'nullable|exists:App\Model\Tag,id'
             ]
         );
 
@@ -141,6 +149,12 @@ class PostController extends Controller
         }
 
         $post->update();
+
+        if (!empty($data['tags'])) {
+            $post->tags()->sync($data['tags']);
+        } else {
+            $post->tags()->detach();
+        }
 
         return redirect()->route('admin.posts.show', $post);
     }
