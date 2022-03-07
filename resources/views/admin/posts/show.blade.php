@@ -18,6 +18,10 @@
                         <h3>{{ $tag->name }}</h3>
                     @endforeach
                 </div>
+                <div class="col">
+                    <img class="img-fluid" src="{{ asset('storage/' . $post->image) }}" alt="{{ $post->title }}">
+                </div>
+
               <div>{{  $post->content }}</div>
               <a class="btn btn-primary" href="{{ url()->previous() }}">Back</a>
             </div>

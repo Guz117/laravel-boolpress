@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row">
             <div class="col">
-                <form action="{{ route('admin.posts.store') }}" method="post">
+                <form action="{{ route('admin.posts.store') }}" method="post" encrtype="multipart/form-data">
                     @csrf
                     @method('POST')
 
@@ -61,6 +61,11 @@
                                 {{ $message }}
                             </div>
                         @enderror
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="image" class="form-label">Small file input example</label>
+                        <input class="form-control form-control-sm" id="image" name="image" type="file">
                     </div>
 
                     <input type="hidden" name="user_id" id="user_id" value="{{ Auth::user()->id }}">
