@@ -60,6 +60,7 @@ class PostController extends Controller
 
         $data = $request->all();
         $data['user_id'] = Auth::user()->id;
+        // dd($request->all());
 
         $postValidate = $request->validate(
             [
@@ -74,7 +75,7 @@ class PostController extends Controller
 
         if (!empty($data['image'])) {
             $img_path = Storage::put('upload', $data['image']);
-            $data['image '] = $img_path;
+            $data['image'] = $img_path;
         }
 
         $post = new Post();
@@ -142,9 +143,17 @@ class PostController extends Controller
                 'title' => 'required|max:240',
                 'content' => 'required',
                 'category_id' => 'exists:App\Model\Category,id',
-                'tags.*' => 'nullable|exists:App\Model\Tag,id'
+                'tags.*' => 'nullable|exists:App\Model\Tag,id',
+                'image' => 'nullable|image'
             ]
         );
+
+        if (!empty($data['image'])) {
+            Storage::delete($post->image);
+
+            $img_path = Storage::put('upload', $data['image']);
+            $data['image'] = $img_path;
+        }
 
         if ($data['title'] != $post->title) {
             $post->title = $data['title'];

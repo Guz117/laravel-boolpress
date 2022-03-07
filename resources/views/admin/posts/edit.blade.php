@@ -5,7 +5,7 @@
 <div class="container">
         <div class="row">
             <div class="col">
-                <form action="{{ route('admin.posts.update', $post->slug) }}" method="post">
+                <form action="{{ route('admin.posts.update', $post->slug) }}" method="post" enctype="multipart/form-data">
                     @csrf
                     @method('PATCH')
 
@@ -77,7 +77,21 @@
                             </div>
                         @enderror
                     </div>
-                    
+
+                    @if (!empty($post->image))
+                        <div class="mb-3">
+                            <img class="img-fluid" src="{{ asset('storage/' . $post->image) }}" alt="{{ $post->title }}">
+                        </div>
+                    @endif    
+                    <div class="mb-3">
+                        <label for="image" class="form-label">Small file input example</label>
+                        <input class="form-control form-control-sm" id="image" name="image" type="file">
+                    </div>
+                    @error('image')
+                        <div class="allert allert_danger mt-3">
+                            {{ $message }}
+                        </div>
+                    @enderror    
 
 
                     <input type="submit" class="btn btn-primary" value="Salva">
