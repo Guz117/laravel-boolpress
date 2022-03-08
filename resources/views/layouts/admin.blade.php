@@ -24,7 +24,7 @@
 
 <body>
     <div id="app">
-        @include('partials.header')
+        {{-- @include('partials.header') --}}
         <main class="py-4">
             <div class="container-fluid">
                 <div class="row">
