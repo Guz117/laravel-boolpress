@@ -47,8 +47,15 @@
                                     {{ $tag->name }}
                                 @endforeach
                             </td>
-                            <td>{{ $post->created_at }}</td>
-                            <td>{{ $post->updated_at }}</td>
+                            <td>
+                                {{ Carbon\Carbon::parse($post->created_at)->format('d/m/Y') }}
+                            </td>
+                            <td>
+                                {{ Carbon\Carbon::parse($post->updated_at)->englishDayOfWeek }}
+                                {{ Carbon\Carbon::parse($post->updated_at)->day }}
+                                {{ Carbon\Carbon::parse($post->updated_at)->englishMonth }}
+                                {{ Carbon\Carbon::parse($post->updated_at)->year }}
+                            </td>
                             <td><a class="btn btn-primary" href="{{ route('admin.posts.show', $post->slug) }}">View</a></td>
                             
                             <td>
