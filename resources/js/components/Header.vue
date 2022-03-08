@@ -1,5 +1,5 @@
 <template>
-   <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+  <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
       <div class="container">
           <a class="navbar-brand" href="#">
               <img id="logo" class="w-25" :src="logo" alt="logo">
@@ -22,38 +22,37 @@
           </div>
       </div>
   </nav>
-
 </template>
 
 <script>
-  export default {
+export default {
     name: "Header",
     data() {
       return {
-      logo: require('../../img/bag-shopping-solid.svg'),
+      logo: require('../../img/download.png'),
       menuItems: [
                     {
-                        label: 'Item 1',
+                        label: 'Home',
                         link: '#',
                         id: 1,
                     },
                     {
-                        label: 'Item 2',
+                        label: 'Map',
                         link: '#',
                          id: 2,
                     },
                     {
-                        label: 'Item 3',
+                        label: 'Note',
                         link: '#',
                         id: 3
                     },
                     {
-                        label: 'Item 4',
+                        label: 'Link',
                         link: '#',
                         id: 4,
                     },
                     {
-                        label: 'Item 5',
+                        label: 'Contact',
                         link: '#',
                         id: 5,
                     }
@@ -63,6 +62,6 @@
   }
 </script>
 
-<style lang="scss">
+<style>
 
 </style>
