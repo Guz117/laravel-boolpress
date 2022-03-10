@@ -35,8 +35,16 @@ class ApiPostController extends Controller
         ]);
     }
 
-    public function search(Request $request)
+    public function show($id)
     {
-        $data = $request->all();
+        $post = Post::find($id);
+
+        return response()->json([
+            'response' => true,
+            'count' => $post ? 1 : 0,
+            'results' =>  [
+                'data' => $post
+            ],
+        ]);
     }
 }
