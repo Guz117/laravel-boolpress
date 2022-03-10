@@ -6,17 +6,7 @@
                   <h1>Posts</h1>
               </div>
           </div>
-          <!-- <div class="row">
-              <div class="col">
-                  <select name="orderbycolum" id="orderbycolum">
-                    <option value="name">Name</option>
-                    <option value="price">Price</option>
-                    <option value="created_at">Created</option>
-                    <option value="updated_at">Updated</option>
-                  </select>
-                  <select name="orderbysort" id="orderbysort"></select>
-              </div>
-          </div> -->
+          
           <Main :cards="cards" @changePage="changePage($event)"></Main>
       </div>
   </div>
