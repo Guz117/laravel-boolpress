@@ -16,7 +16,7 @@
                 v-for="(item) in menuItems"
                 :key="item.id"
                 >
-                  <a class="nav-link" :href="item.link">{{ item.label }}</a>
+                  <route-link class="nav-link" :to="{ name: item.routeName }">{{ item.label }}</route-link>
                </li>
              </ul>
           </div>
@@ -33,29 +33,16 @@ export default {
       menuItems: [
                     {
                         label: 'Home',
-                        link: '#',
-                        id: 1,
+                        routeName: 'home'
                     },
                     {
-                        label: 'Map',
-                        link: '#',
-                         id: 2,
+                        label: 'Posts',
+                        routeName: 'posts'
                     },
                     {
-                        label: 'Note',
-                        link: '#',
-                        id: 3
+                        label: 'Chi siamo',
+                        routeName: 'about'
                     },
-                    {
-                        label: 'Link',
-                        link: '#',
-                        id: 4,
-                    },
-                    {
-                        label: 'Contact',
-                        link: '#',
-                        id: 5,
-                    }
                 ],
       }
     },
