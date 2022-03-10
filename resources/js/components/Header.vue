@@ -16,7 +16,7 @@
                 v-for="(item) in menuItems"
                 :key="item.id"
                 >
-                  <route-link class="nav-link" :to="{ name: item.routeName }">{{ item.label }}</route-link>
+                  <router-link class="nav-link" :to="{ name: item.routeName }">{{ item.label }}</router-link>
                </li>
              </ul>
           </div>

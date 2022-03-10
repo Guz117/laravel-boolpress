@@ -30,8 +30,13 @@ class ApiPostController extends Controller
         return response()->json([
             'response' => true,
             'results' =>  [
-                '$data' => $posts,
+                'data' => $posts,
             ]
         ]);
+    }
+
+    public function search(Request $request)
+    {
+        $data = $request->all();
     }
 }
