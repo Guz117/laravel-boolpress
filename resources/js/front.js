@@ -12,6 +12,7 @@ import Home from './pages/Home';
 import About from './pages/About';
 import Posts from './pages/Posts';
 import Post from './pages/Post';
+import Contacts from './pages/Contacts';
 
 
 
@@ -41,7 +42,12 @@ const router = new VueRouter({
             path: '/about',
             name: 'about',
             component: About
-        }
+        },
+        {
+            path: '/contacts',
+            name: 'contacts',
+            component: Contacts
+        },
     ]
 });
 

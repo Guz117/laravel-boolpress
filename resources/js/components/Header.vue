@@ -43,6 +43,10 @@ export default {
                         label: 'Chi siamo',
                         routeName: 'about'
                     },
+                    {
+                      label: 'Contatti',
+                      routeName: 'contacts'
+                    }
                 ],
       }
     },
