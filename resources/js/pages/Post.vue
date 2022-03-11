@@ -32,7 +32,7 @@ import Axios from "axios";
     },
     methods: {
       getPost(url){
-          Axios.get(url).then(
+          Axios.get(url, {headers: {'Authorization': 'Bearer c12345g'}}).then(
             (result) => {
               this.post = result.data.results.data;
             });
