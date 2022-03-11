@@ -11,10 +11,12 @@ class ContactController extends Controller
     {
 
         $path = $request->file->store('uploads');
-
+        $firstname = $request->firstname;
+        $lastname = $request->lastname;
+        $message = $request->message;
         return response()->json([
             "success" => true,
-            "result" => $path
+            "result" => ['firstname' => $firstname, 'lastname' => $lastname, 'message' => $message, 'path' => $path],
         ]);
     }
 }
